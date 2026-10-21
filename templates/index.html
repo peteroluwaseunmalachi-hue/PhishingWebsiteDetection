@@ -4,11 +4,11 @@
     <title>Phishing Website Detector</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 40px; }
-        .container { background: white; padding: 30px; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .container { background: white; padding: 30px; border-radius: 8px; max-width: 900px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         h1 { color: #333; text-align: center; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .feature-group { display: flex; flex-direction: column; }
-        label { font-size: 14px; margin-bottom: 5px; color: #555; }
+        label { font-size: 13px; margin-bottom: 5px; color: #555; font-weight: bold; }
         select, button { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
         button { background-color: #007bff; color: white; border: none; cursor: pointer; margin-top: 20px; font-size: 16px; padding: 12px; }
         button:hover { background-color: #0056b3; }
@@ -22,36 +22,158 @@
         
         <form action="/predict" method="POST">
             <div class="grid">
+                
+                <!-- 1 -->
                 <div class="feature-group">
-                    <label>Feature 1</label>
-                    <select name="feature0"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                    <label>1. Using IP Address?</label>
+                    <select name="feature0"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
                 </div>
+                <!-- 2 -->
                 <div class="feature-group">
-                    <label>Feature 2</label>
-                    <select name="feature1"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                    <label>2. URL Length (Long)?</label>
+                    <select name="feature1"><option value="1">Short (Safe)</option><option value="0">Medium</option><option value="-1">Long (Phishing)</option></select>
                 </div>
+                <!-- 3 -->
                 <div class="feature-group">
-                    <label>Feature 3</label>
-                    <select name="feature2"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                    <label>3. Using Shortening Service (bit.ly)?</label>
+                    <select name="feature2"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
                 </div>
+                <!-- 4 -->
                 <div class="feature-group">
-                    <label>Feature 4</label>
-                    <select name="feature3"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                    <label>4. Having '@' Symbol in URL?</label>
+                    <select name="feature3"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
                 </div>
-                <script>
-                    for(let i = 4; i < 30; i++) {
-                        document.write(`
-                        <div class="feature-group">
-                            <label>Feature ${i+1}</label>
-                            <select name="feature${i}">
-                                <option value="1">1 (Safe)</option>
-                                <option value="0">0 (Suspicious)</option>
-                                <option value="-1">-1 (Phishing)</option>
-                            </select>
-                        </div>
-                        `);
-                    }
-                </script>
+                <!-- 5 -->
+                <div class="feature-group">
+                    <label>5. Double Slash Redirecting (//)?</label>
+                    <select name="feature4"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 6 -->
+                <div class="feature-group">
+                    <label>6. Prefix/Suffix with '-'?</label>
+                    <select name="feature5"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 7 -->
+                <div class="feature-group">
+                    <label>7. Having Sub Domain?</label>
+                    <select name="feature6"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 8 -->
+                <div class="feature-group">
+                    <label>8. SSL Final State (HTTPS)?</label>
+                    <select name="feature7"><option value="1">Yes (Safe)</option><option value="0">Suspicious</option><option value="-1">No (Phishing)</option></select>
+                </div>
+                <!-- 9 -->
+                <div class="feature-group">
+                    <label>9. Domain Registration Length?</label>
+                    <select name="feature8"><option value="1">Long (Safe)</option><option value="0">Suspicious</option><option value="-1">Short (Phishing)</option></select>
+                </div>
+                <!-- 10 -->
+                <div class="feature-group">
+                    <label>10. Favicon (Icon) Domain Match?</label>
+                    <select name="feature9"><option value="1">Yes (Safe)</option><option value="0">Suspicious</option><option value="-1">No (Phishing)</option></select>
+                </div>
+                <!-- 11 -->
+                <div class="feature-group">
+                    <label>11. Using Non-Standard Port?</label>
+                    <select name="feature10"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 12 -->
+                <div class="feature-group">
+                    <label>12. HTTPS Token in URL?</label>
+                    <select name="feature11"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 13 -->
+                <div class="feature-group">
+                    <label>13. Request URL (External objects)?</label>
+                    <select name="feature12"><option value="1">Same Domain (Safe)</option><option value="0">Suspicious</option><option value="-1">External (Phishing)</option></select>
+                </div>
+                <!-- 14 -->
+                <div class="feature-group">
+                    <label>14. URL Anchor (#)?</label>
+                    <select name="feature13"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 15 -->
+                <div class="feature-group">
+                    <label>15. Links in Tags (External)?</label>
+                    <select name="feature14"><option value="1">Same Domain (Safe)</option><option value="0">Suspicious</option><option value="-1">External (Phishing)</option></select>
+                </div>
+                <!-- 16 -->
+                <div class="feature-group">
+                    <label>16. Server Form Handler (SFH)?</label>
+                    <select name="feature15"><option value="1">Safe</option><option value="0">Suspicious</option><option value="-1">Phishing</option></select>
+                </div>
+                <!-- 17 -->
+                <div class="feature-group">
+                    <label>17. Submitting Info to Email?</label>
+                    <select name="feature16"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 18 -->
+                <div class="feature-group">
+                    <label>18. Abnormal URL?</label>
+                    <select name="feature17"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 19 -->
+                <div class="feature-group">
+                    <label>19. Website Forwarding (Redirects)?</label>
+                    <select name="feature18"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 20 -->
+                <div class="feature-group">
+                    <label>20. Status Bar Changes on Hover?</label>
+                    <select name="feature19"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 21 -->
+                <div class="feature-group">
+                    <label>21. Disabling Right Click?</label>
+                    <select name="feature20"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 22 -->
+                <div class="feature-group">
+                    <label>22. Pop-up Windows?</label>
+                    <select name="feature21"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 23 -->
+                <div class="feature-group">
+                    <label>23. Iframe Border?</label>
+                    <select name="feature22"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+                <!-- 24 -->
+                <div class="feature-group">
+                    <label>24. Age of Domain (Old)?</label>
+                    <select name="feature23"><option value="1">Old (Safe)</option><option value="0">Suspicious</option><option value="-1">New (Phishing)</option></select>
+                </div>
+                <!-- 25 -->
+                <div class="feature-group">
+                    <label>25. DNS Record?</label>
+                    <select name="feature24"><option value="1">Yes (Safe)</option><option value="0">Suspicious</option><option value="-1">No (Phishing)</option></select>
+                </div>
+                <!-- 26 -->
+                <div class="feature-group">
+                    <label>26. Website Traffic (Popular)?</label>
+                    <select name="feature25"><option value="1">High (Safe)</option><option value="0">Suspicious</option><option value="-1">Low (Phishing)</option></select>
+                </div>
+                <!-- 27 -->
+                <div class="feature-group">
+                    <label>27. Page Rank?</label>
+                    <select name="feature26"><option value="1">High (Safe)</option><option value="0">Suspicious</option><option value="-1">Low (Phishing)</option></select>
+                </div>
+                <!-- 28 -->
+                <div class="feature-group">
+                    <label>28. Google Index?</label>
+                    <select name="feature27"><option value="1">Yes (Safe)</option><option value="0">Suspicious</option><option value="-1">No (Phishing)</option></select>
+                </div>
+                <!-- 29 -->
+                <div class="feature-group">
+                    <label>29. Links Pointing to Page?</label>
+                    <select name="feature28"><option value="1">Many (Safe)</option><option value="0">Suspicious</option><option value="-1">None (Phishing)</option></select>
+                </div>
+                <!-- 30 -->
+                <div class="feature-group">
+                    <label>30. Statistical Report (Suspicious)?</label>
+                    <select name="feature29"><option value="1">No (Safe)</option><option value="0">Suspicious</option><option value="-1">Yes (Phishing)</option></select>
+                </div>
+
             </div>
             <button type="submit" style="width:100%;">Analyze Website</button>
         </form>
