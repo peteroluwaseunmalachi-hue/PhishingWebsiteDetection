@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phishing Website Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 40px; }
+        .container { background: white; padding: 30px; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .feature-group { display: flex; flex-direction: column; }
+        label { font-size: 14px; margin-bottom: 5px; color: #555; }
+        select, button { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; margin-top: 20px; font-size: 16px; padding: 12px; }
+        button:hover { background-color: #0056b3; }
+        .result { text-align: center; margin-top: 20px; font-size: 20px; font-weight: bold; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phishing Website Detection</h1>
+        <p style="text-align:center; color:#777;">Answer the 30 questions below to check if the website is safe.</p>
+        
+        <form action="/predict" method="POST">
+            <div class="grid">
+                <div class="feature-group">
+                    <label>Feature 1</label>
+                    <select name="feature0"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                </div>
+                <div class="feature-group">
+                    <label>Feature 2</label>
+                    <select name="feature1"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                </div>
+                <div class="feature-group">
+                    <label>Feature 3</label>
+                    <select name="feature2"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                </div>
+                <div class="feature-group">
+                    <label>Feature 4</label>
+                    <select name="feature3"><option value="1">1 (Safe)</option><option value="0">0 (Suspicious)</option><option value="-1">-1 (Phishing)</option></select>
+                </div>
+                <script>
+                    for(let i = 4; i < 30; i++) {
+                        document.write(`
+                        <div class="feature-group">
+                            <label>Feature ${i+1}</label>
+                            <select name="feature${i}">
+                                <option value="1">1 (Safe)</option>
+                                <option value="0">0 (Suspicious)</option>
+                                <option value="-1">-1 (Phishing)</option>
+                            </select>
+                        </div>
+                        `);
+                    }
+                </script>
+            </div>
+            <button type="submit" style="width:100%;">Analyze Website</button>
+        </form>
+
+        {% if result %}
+        <div class="result" style="background-color: {{ color }}20; color: {{ color }}; border: 2px solid {{ color }};">
+            {{ result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
